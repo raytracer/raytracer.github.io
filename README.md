@@ -1,3 +1,3 @@
 # website
 
-My personal website [https://raytracer.me](raytracer.me).
+My personal website [raytracer.me](https://raytracer.me).
