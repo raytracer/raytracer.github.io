@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Christoph Müller" />
+  <meta name="keywords" content="pandoc, deno, blog" />
+  <title>My new Blog Setup</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style>
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="/mvp.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+    <header>
+        <nav>
+            <h3>raytracer.me</h3>
+            <ul>
+                <li><a href="/">Home</a><li>
+                <li><a href="/blog">Blog</a><li>
+            </ul>
+        </nav>
+                        <h1 class="title">My new Blog Setup</h1>
+                    </header>
+<main>
+<figure>
+<img src="https://rakhim.org/images/honestly-undefined/blogging.jpg" alt="100% guilty – source" /><figcaption>100% guilty – <a href="https://rakhim.org/honestly-undefined/19/">source</a></figcaption>
+</figure>
+<p>My old blog setup consisted of a set of 2-3 handwritten php pages including a backend script for handling contact form requests by forwarding them to a telegram bot. Since this was heavily abused by spam I decided to drop the contact form altogether and replace the site with a set of statically rendered html that get generated from markdown documents.</p>
+<h2 id="generating-html-documents">Generating HTML-Documents</h2>
+<p>For generating the html documents <a href="">pandoc</a> was used. Pandoc is a great and versatile tool. Of course you can supply your own custom .css file and base html-template e.g.:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="ex">pandoc</span> -s index.md --template template.html -c /mvp.css -o index.html</a></code></pre></div>
+<p>This will generate an index.html from an index.md file and use the mvp.css stylesheet (the / is used to make it usable from all html files by being accessible from the root directory) and template.html base template. You can write the default template to disk by passing the <code>-D</code> option to pandoc:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1"><span class="ex">pandoc</span> -D html <span class="op">&gt;</span> template.html</a></code></pre></div>
+<p>The mvp.css css is basically a mix from the original <a href="https://andybrewer.github.io/mvp/">mvp.css</a> combined with a few color accents from the <a href="https://www.nordtheme.com/">nord color theme</a>.</p>
+<h2 id="generating-all-.html-files-at-once">Generating all .html-files at once</h2>
+<p>To generate all .html-files at once I use a tool called <a href="https://github.com/sharkdp/fd"><code>fd</code></a> which is a modern rust interpretation of the classic <code>find</code>. I prefer it mostly for its much more refined UI/UX. <code>fd</code> can execute a command for every file matching the filter criteria.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1"><span class="ex">fd</span> -e md -x pandoc -s {} <span class="ex">--template</span> template.html -c /mvp.css -o <span class="dt">{.}</span>.html</a></code></pre></div>
+<p>This will recursively transform my markdown documents into html documents. My blog is just a subdirectory with a list of markdown files prefixed with an iso date string.</p>
+<h2 id="generating-an-overview">Generating an overview</h2>
+<p>An index.md file containing all blog entries is automatically generated from the list of files in the /blog directory (including sorting the prefixed files). For generating the list I used the <a href="https://deno.land/">deno</a> platform which is (grossly simplified) a typescript like version of node. Dependency management is completely different though in that the import call in your .ts files will contain fully qualified urls (including the desired version). Dependencies are usally cached for offline use. Now for this simple site a simple bash script would be fine as well, but the convenience of using an actual scripting language including great static typing support was nice.</p>
+</main>
+<footer>
+    <section>
+        <a href="/impressum.html">Impressum und Datenschutz</a>
+    </section>
+    <section>
+        Copyright © Christoph Müller 2021.
+    </section>
+</footer>
+</body>
+</html>
