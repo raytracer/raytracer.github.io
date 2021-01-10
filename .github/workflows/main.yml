@@ -39,7 +39,6 @@ jobs:
         uses: burnett01/rsync-deployments@4.1
         with:
           switches: -avzr --delete
-          path: src/
           remote_path: /var/www/html/
           remote_host: devops.raytracer.me
           remote_user: root
