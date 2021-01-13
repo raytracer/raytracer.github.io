@@ -10,7 +10,7 @@ push it to the server via rsync.
 So I thought about moving the blogs source to github and using github actions to build the blog. Every site will also include a direct link to edit it using the GitHub file editor.
 
 The problem of course being that pandoc + deno + fd is not really a common setup and there is no dedicated action available. 
-But with the knowledge that every GitHub action that is based on ubuntu has a passwordless root available it should not be to difficult to install the dependencies.
+But with the knowledge that every GitHub action that is based on ubuntu has a passwordless sudo access available it should not be to difficult to install the dependencies.
 
 ```yaml
 # This is a basic workflow to help you get started with Actions
