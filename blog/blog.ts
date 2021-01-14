@@ -10,7 +10,7 @@ for (const entry of walkSync(".")) {
     if (entry.name !== "index.md" && entry.isFile && entry.name.endsWith(suffix)) {
         const pagetitle = Marked.parse(Deno.readTextFileSync(entry.path)).meta.pagetitle || entry.name.substr(11).replace(suffix, "").replace("_", " ");
         const date = entry.name.substr(0, 10);
-        entries.push(`* <samp>${date}</samp> [${pagetitle}](${relative(Deno.cwd(), entry.path).replace(suffix, ".html")})`);
+        entries.push(`* **`${date}`** [${pagetitle}](${relative(Deno.cwd(), entry.path).replace(suffix, ".html")})`);
     }
 }
 
