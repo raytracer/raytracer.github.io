@@ -6,7 +6,7 @@ keywords: [fish, shell, alias, fzf, fd, projector]
 
 My favorite shell is the [fish](https://fishshell.com/) shell. It does not need much configuration and works fairly well out of the box including color highlighting and smart completions and suggestions. Except for the mediocre vim mode I do not have much to complain about. There are just a couple of things that I do miss when working in the shell:
 
-- jumping to one of my git projects (either for work or personal projects
+- jumping to one of my git projects (either for work or personal projects)
 - searching for a specific subdirectory that may be burried somewhere deep
 
 For the first problem I use a rust tool called [`projector`](https://docs.rs/crate/projector/0.5.0)  in combination with the great [`fzf` ](https://github.com/junegunn/fzf). `projector` has a config file to specify all the root locations for possible git repositories (e.g. the intellij folder and a local repos folder etc.). The output is fed into `fzf` for an interactive search. I pass the `--layout=reverse` option to display the results below for a better overview. I call the alias `jump`:
