@@ -4,7 +4,7 @@ author: Christoph Müller
 keywords: [fish, shell, alias, fzf, fd, projector]
 ---
 
-My favorite shell is the [fish](https://fishshell.com/) shell. It does not need much configuration and works fairly well out of the box including color highlighting and smart completions and suggestions. Except for the mediocre vim mode I do not have much to complain about. There are just a couple of things that I do miss when working in the shell:
+My favorite shell is the [fish](https://fishshell.com/) shell. It does not need much configuration and works fairly well out of the box including color highlighting and smart completions and suggestions. Except for the mediocre vim mode (**UPDATE 2021-03** this has gotten so much better now! Vi mode bindings now support dh, dl, c0, cf, ct, cF, cT, ch, cl, y0, ci, ca, yi, ya, di, da, d;, d,, o, O) I do not have much to complain about. There are just a couple of things that I do miss when working in the shell:
 
 - jumping to one of my git projects (either for work or personal projects)
 - searching for a specific subdirectory that may be burried somewhere deep
