@@ -9,6 +9,7 @@ When building web backends in Java one of my biggest grievance was the communinc
 I was looking for alternatives especially DSLs that create a SQL string that I can use to query the database. During my search I have found 1 or 2 libraries in this area. The first is [JOOQ](https://www.jooq.org/) which puts the focus on a type safe DSL. The second is [persism](https://sproket.github.io/Persism/) (I discovered it recently when scanning the github trending page) which puts the focus on eliminating boilerplate but is much more ORM like, which is stated in the official description:
 
 > Persism is a wood simple, auto-discovery, auto-configuration, and convention over configuration ORM (Object Relational Mapping) library for Java.
+> 
 > -- <cite>https://sproket.github.io/Persism/</cite>
 
 ```java
