@@ -4,7 +4,7 @@ author: Christoph Müller
 keywords: [tech stack, java, javalin, typescript, blog]
 ---
 
-At [Olyro](https://olyro.de) we built a lot of web applications. Usally consisting of a backend service and a SPA frontend. Over the years we went through quite a few technologies, but only a few really stuck with us:
+At [Olyro](https://olyro.de) we built a lot of web applications. Usually consisting of a backend service and a SPA frontend. Over the years we went through quite a few technologies, but only a few really stuck with us:
 
 - Postgres
 - JVM - Java (>= 8)
