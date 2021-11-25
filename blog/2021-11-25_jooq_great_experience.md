@@ -72,7 +72,7 @@ dsl.select(
 ```
 
 Achieving this kind of nesting without either multiple single queries or a
-single messy big one with gigantic redundancy is a gigantic win in my book!  It
+single messy big one with gigantic redundancy is a big win in my book!  It
 is basically the SQL DSL I always wished for (now there is truely no excuse
 anymore not to write SQL for me ;) )
 
