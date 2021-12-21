@@ -16,6 +16,7 @@ After doing some more research I found [JBang](https://jbang.dev/). It tickes mo
 - Dependency managment via `//DEPS` or `@Grab` annotations
 - Editor integration by temporarily creating a gradle project
 - REPL like usage via `jbang --interactive` (uses JShell internally)
+- (not that important but cool) GraalVM native-image support to create native executables
 
 Now I can finally use my favorite [tech stack](./2020-12-30_my_favorite_tech_stack.html) to build scripts that start a web server.
 
@@ -44,7 +45,7 @@ public class HelloServer {
 }
 ```
 
-The first line is the shebang (while still being valid java). The next three lines declare dependencies (Javalin as a webservice + SLF4j-simple for logging -- no log4j necessary ;) ). What follows next is just a regular Java program to start a webserver on port 7777. To have proper IDE support the java file name needs to match the class name, though JBang itself does not care about that. Editing works via `jbang edit --open=code  HelloServer.java` in case of VS Code. That creates a temp directory with a gradle project for the IDE. While this works great I would still prefer to edit the file directly.
+The first line is the shebang (while still being valid java). The next three lines declare dependencies (Javalin as a webservice + SLF4j-simple for logging -- no log4j necessary ;) ). What follows next is just a regular Java program to start a webserver on port 7777. To have proper IDE support the java file name needs to match the class name, though JBang itself does not care about that. Editing works via `jbang edit --open=code HelloServer.java` in case of VS Code. That creates a temp directory with a gradle project for the IDE. While this works great I would still prefer to edit the file directly.
 
 ```
 [main] INFO io.javalin.Javalin -
