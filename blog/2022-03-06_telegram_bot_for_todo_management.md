@@ -10,9 +10,9 @@ For the longest time I have looked for a solution to manage todos. I have tried 
 - Intuitive UI (it must be easy and low friction to create a new todo)
 - Some kind of automatic management/organization/scheduling of todos
 
-Thats basically it. I don't really need tags or projects or file upload or anything like that. For a long time Any.do was the closest contender, but it always had some weird pricing with some kind perpetual 50% discount going on (*but it will end next week! yeah this time for real!*). I also was not to fond of the web version. On the other hand the Any.do moment feature and their new grocery list feature I quite liked. The Any.do moment basically helps you to periodically review todos and sort them into buckets (**done**, **today**, **tomorrow**, **later**).
+Thats basically it. I don't really need tags or projects or file upload or anything like that. For a long time Any.do was the closest contender, but it always had some weird pricing with some kind of perpetual 50% discount going on (*but it will end next week! yeah this time for real!*). I also was not to fond of the web version the UI could have used a bit more love. On the other hand the Any.do moment feature and their new grocery list feature I quite liked. The Any.do moment basically helps you to periodically review todos and sort them into buckets (**done**, **today**, **tomorrow**, **later**).
 
-Since I was not really interested in purchasing the commercial version (I was afraid I was not going to stick with it and wasting the yearly subscription) I went ahead and built my own minimal solution based on a telegram bot written in Java using this excellent [library](https://github.com/pengrad/java-telegram-bot-api) by pengrad. It fulfills my most important criteria:
+Since I was not really interested in purchasing the commercial version of Any.do (I was afraid I was not going to stick with it and wasting the yearly subscription) I went ahead and built my own minimal solution based on a telegram bot written in Java using this excellent [library](https://github.com/pengrad/java-telegram-bot-api) by pengrad. It fulfills my most important criteria:
 
 - Telegram is cross platform
 - It uses basic natural (german) language commands (e.g. "morgen", "heute", "nächste Woche")
