@@ -1,4 +1,8 @@
-# Choosing Services and Tools for a new Company
+---
+pagetitle: Choosing Services and Tools for a new Company
+author: Christoph Müller
+keywords: [Business, Company, SaaS, Tools]
+---
 
 I sometimes wonder how my company would look like if I were to rebuild it today. With the advent of new SaaS products and the experience with existing tools I ask myself what would I choose to build a company.
 When creating a company the focus should obviously be on talking to (potential) customers, creating an MVP and finding product market fit with as few iterations as possible. But tools can help with this and it is of course also fun to explore new tools even if this is endeavor not always 100% productive. So with this short disclaimer out of the way lets talk about the different areas where a company could use tools:
