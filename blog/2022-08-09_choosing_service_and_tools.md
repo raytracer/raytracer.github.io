@@ -46,7 +46,7 @@ We tried a lot of different options here. It is probably the point on my list wh
 Tools for everyday communication are probably the most used tools in any company. For text communication we used Telegram for a long time. I think it is really reliable tool that has great native UI clients. We use [whereby](https://whereby.com) for video communication. It has public rooms which is a great if you meet with customers and you cannot or don't want to schedule individual appointments. When it comes to value for money I think Microsoft Teams is quite a great option. You can get E-Mail + Teams + Office365 for a reasonable price. I think Microsoft really created a killer product here, even though I personally am not the greatest fan of the chat feature of Teams.
 Another tool I have on my list is [Zulip](https://zulip.com) which is thread based so it could replace E-Mail to a certain extend.
 At Olyro we have switched to (self hosted) Matrix for data protection / regulation reasons. The chat feature works quite well. Video Chat is still pretty unstable not yet ready for prime time as it relies on Jitsi.
-What I personally really like for scheduling meetings is [calendly](https://calendly.com).
+What I personally really like for scheduling meetings with clients is [calendly](https://calendly.com).
 
 ## Hosting + Domain Management
 
