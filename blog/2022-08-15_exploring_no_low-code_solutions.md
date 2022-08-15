@@ -24,13 +24,13 @@ We will create 3 tables:
 
 Let's start with the customer table, since it does not depend on other tables. We create a new base (let's name it "Simple Invoices") and rename the existing table to "Customers".
 
-![](https://cloud.seatable.io/workspace/17395/asset/4eb42e98-5eae-4769-8148-6ab8054a6d99/images/auto-upload/image-1660495987680.png)
+![Customers Table](./2022-08-15_exploring_no_low-code_solutions/customers.png)
 
 As you can see we just list the number, name and the address here (they are all text fields except for the first column, it has the  `auto number` type). The column on the left is the primary column. It is similar but not the same as the primary key of a database. It supports less types than the other columns. Currently one of the biggest difference between Airtable and Seatable here is the support of formulas in the primary column.
 
 Let's continue with the invoices table. Create a new table by clicking the plus icon and name it "Invoices".
 
-![](https://cloud.seatable.io/workspace/17395/asset/4eb42e98-5eae-4769-8148-6ab8054a6d99/images/auto-upload/image-1660496871126.png)
+![Invoices](./2022-08-15_exploring_no_low-code_solutions/invoices.png)
 
 Their are 6 columns:
 
@@ -41,13 +41,15 @@ Their are 6 columns:
 * A short description with a default value that tells the customer to not forget to mention the invoice number in the bank transfer (can be changed)
 * The last column is a  `file` column, it stores the final PDF
 
-<img src="https://cloud.seatable.io/workspace/17395/asset/4eb42e98-5eae-4769-8148-6ab8054a6d99/images/auto-upload/image-1660496041125.png" width="224" height="null" />
+
+
+![Link Customer](./2022-08-15_exploring_no_low-code_solutions/customer-link.png)
 
 Before we can define the button and the invoice layout we must first create our final table, the positions table. 
 
 Create a table called "Postions".
 
-![](https://cloud.seatable.io/workspace/17395/asset/4eb42e98-5eae-4769-8148-6ab8054a6d99/images/auto-upload/image-1660497356404.png)
+![Invoices](./2022-08-15_exploring_no_low-code_solutions/positions.png)
 
 This table has 7 columns:
 
@@ -59,19 +61,21 @@ This table has 7 columns:
 * A type (we use a single choice here)
 * The combined net price as a  `formula` (see picture below for details)
 
+![Combined Net Price](./2022-08-15_exploring_no_low-code_solutions/combined-net-price.png)
+
 Once we are done with that we can go back to the invoices table and create two new columns. One for adding all the positions and one for multiplying the result with our tax rate. You can also see that the new "Positions" column appeared all by itself when we referenced the invoice in the "Positions" table.
 
-<img src="https://cloud.seatable.io/workspace/17395/asset/4eb42e98-5eae-4769-8148-6ab8054a6d99/images/auto-upload/image-1660498034361.png" width="269" height="null" />
+![Combined Net Price](./2022-08-15_exploring_no_low-code_solutions/net-price-invoice.png)
 
-<img src="https://cloud.seatable.io/workspace/17395/asset/4eb42e98-5eae-4769-8148-6ab8054a6d99/images/auto-upload/image-1660498050595.png" width="269" height="null" />
+![Price With Tax](./2022-08-15_exploring_no_low-code_solutions/price-with-tax.png)
 
 And that is it! The only thing left is creating a PDF from our table. This is done by enabling the "Page Designer" plugin (see the right corner) and designing a new template. My example can be seen below. It is pretty self explanatory. Just drag and drop the desired fields into the template.
 
-![](https://cloud.seatable.io/workspace/17395/asset/4eb42e98-5eae-4769-8148-6ab8054a6d99/images/auto-upload/image-1660498362407.png)
+![PDF Template](./2022-08-15_exploring_no_low-code_solutions/template.png)
 
 Finally create a new column "Action" in the "Invoices" table to generate PDFs, by choosing the  `button` type and and selecting generate PDF as an option.
 
-<img width="249.017822265625" src="https://cloud.seatable.io/workspace/17395/asset/4eb42e98-5eae-4769-8148-6ab8054a6d99/images/auto-upload/image-1660512529994.JPG" />
+![Generation Button](./2022-08-15_exploring_no_low-code_solutions/pdf-button.jpeg)
 
 That is it, we are done here!
 
@@ -84,5 +88,4 @@ There are a couple of downsides especially when it comes to nesting. Tables can 
 TODO
 
 Superblock + JHipster
-
 
