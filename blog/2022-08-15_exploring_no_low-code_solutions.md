@@ -43,7 +43,7 @@ Their are 6 columns:
 
 
 
-![Link Customer](./2022-08-15_exploring_no_low-code_solutions/customer-link.png)
+![Link Customer](./2022-08-15_exploring_no_low-code_solutions/customer-link.png){ width=250px }
 
 Before we can define the button and the invoice layout we must first create our final table, the positions table. 
 
@@ -61,13 +61,13 @@ This table has 7 columns:
 * A type (we use a single choice here)
 * The combined net price as a  `formula` (see picture below for details)
 
-![Combined Net Price](./2022-08-15_exploring_no_low-code_solutions/combined-net-price.png)
+![Combined Net Price](./2022-08-15_exploring_no_low-code_solutions/combined-net-price.png){ width=250px }
 
 Once we are done with that we can go back to the invoices table and create two new columns. One for adding all the positions and one for multiplying the result with our tax rate. You can also see that the new "Positions" column appeared all by itself when we referenced the invoice in the "Positions" table.
 
-![Combined Net Price](./2022-08-15_exploring_no_low-code_solutions/net-price-invoice.png)
+![Combined Net Price](./2022-08-15_exploring_no_low-code_solutions/net-price-invoice.png){ width=250px }
 
-![Price With Tax](./2022-08-15_exploring_no_low-code_solutions/price-with-tax.png)
+![Price With Tax](./2022-08-15_exploring_no_low-code_solutions/price-with-tax.png){ width=250px }
 
 And that is it! The only thing left is creating a PDF from our table. This is done by enabling the "Page Designer" plugin (see the right corner) and designing a new template. My example can be seen below. It is pretty self explanatory. Just drag and drop the desired fields into the template.
 
@@ -75,7 +75,7 @@ And that is it! The only thing left is creating a PDF from our table. This is do
 
 Finally create a new column "Action" in the "Invoices" table to generate PDFs, by choosing the  `button` type and and selecting generate PDF as an option.
 
-![Generation Button](./2022-08-15_exploring_no_low-code_solutions/pdf-button.jpeg)
+![Generation Button](./2022-08-15_exploring_no_low-code_solutions/pdf-button.jpeg){ width=250px }
 
 That is it, we are done here!
 
@@ -85,7 +85,7 @@ There are a couple of downsides especially when it comes to nesting. Tables can 
 
 ### Going a different route (for developers only)
 
-TODO
+For developers there are of course other options. One would be to use a code generator like [JHipster](https://www.jhipster.tech/). JHipster uses a domain modeling language to generate backend + frontend + database. I like the tech stack a lot, but the problem I see is the amount of friction in the beginning. You still have to generate scaffolding and write the domain language file. Whereas in something like Airtable you can start right away. JHipster is the much more flexible approach of course, but in "real" individual development projects I usually have the extra bit of time to do what JHipster does manually. And part of [our workflow](./2020-12-30_my_favorite_tech_stack.md) is actually already automated.
 
-Superblock + JHipster
+Another possibility I just heard of is [Superblocks](https://www.superblocks.com/). It is more like Lego for developers much more akin to something like Airtable. I like the ideas of it. It also can be used to create Dashboards and Forms and plays nicely with custom code. If a customer is willing to make some compromises (sadly that is often not the case) he/she could save quite a bit of money here and still get a decent product.
 
