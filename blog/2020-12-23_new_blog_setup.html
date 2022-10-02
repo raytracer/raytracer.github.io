@@ -8,32 +8,35 @@
   <meta name="keywords" content="pandoc, deno, blog" />
   <title>My new Blog Setup</title>
   <style>
+      figure{text-align: center;}
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
   <style>
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -42,9 +45,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -94,18 +97,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
                     </header>
 <main>
 <figure>
-<img src="https://rakhim.org/images/honestly-undefined/blogging.jpg" alt="100% guilty – source" /><figcaption>100% guilty – <a href="https://rakhim.org/honestly-undefined/19/">source</a></figcaption>
+<img src="https://rakhim.org/images/honestly-undefined/blogging.jpg" alt="100% guilty – source" /><figcaption aria-hidden="true">100% guilty – <a href="https://rakhim.org/honestly-undefined/19/">source</a></figcaption>
 </figure>
 <p>My old blog setup consisted of a set of 2-3 handwritten php pages including a backend script for handling contact form requests by forwarding them to a telegram bot. Since this was heavily abused by spam I decided to drop the contact form altogether and replace the site with a set of statically rendered html that get generated from markdown documents.</p>
 <h2 id="generating-html-documents">Generating HTML-Documents</h2>
 <p>For generating the html documents <a href="">pandoc</a> was used. Pandoc is a great and versatile tool. Of course you can supply your own custom .css file and base html-template e.g.:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="ex">pandoc</span> -s index.md --template template.html -c /mvp.css -o index.html</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> <span class="at">-s</span> index.md <span class="at">--template</span> template.html <span class="at">-c</span> /mvp.css <span class="at">-o</span> index.html</span></code></pre></div>
 <p>This will generate an index.html from an index.md file and use the mvp.css stylesheet (the / is used to make it usable from all html files by being accessible from the root directory) and template.html base template. You can write the default template to disk by passing the <code>-D</code> option to pandoc:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1"><span class="ex">pandoc</span> -D html <span class="op">&gt;</span> template.html</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pandoc</span> <span class="at">-D</span> html <span class="op">&gt;</span> template.html</span></code></pre></div>
 <p>The mvp.css css is basically a mix from the original <a href="https://andybrewer.github.io/mvp/">mvp.css</a> combined with a few color accents from the <a href="https://www.nordtheme.com/">nord color theme</a>.</p>
 <h2 id="generating-all-.html-files-at-once">Generating all .html-files at once</h2>
 <p>To generate all .html-files at once I use a tool called <a href="https://github.com/sharkdp/fd"><code>fd</code></a> which is a modern rust interpretation of the classic <code>find</code>. I prefer it mostly for its much more refined UI/UX. <code>fd</code> can execute a command for every file matching the filter criteria.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1"><span class="ex">fd</span> -e md -x pandoc -s {} <span class="ex">--template</span> template.html -c /mvp.css -o <span class="dt">{.}</span>.html</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fd</span> <span class="at">-e</span> md <span class="at">-x</span> pandoc <span class="at">-s</span> {} <span class="at">--template</span> template.html <span class="at">-c</span> /mvp.css <span class="at">-o</span> {.}.html</span></code></pre></div>
 <p>This will recursively transform my markdown documents into html documents. My blog is just a subdirectory with a list of markdown files prefixed with an iso date string.</p>
 <h2 id="generating-an-overview">Generating an overview</h2>
 <p>An index.md file containing all blog entries is automatically generated from the list of files in the /blog directory (including sorting the prefixed files). For generating the list I used the <a href="https://deno.land/">deno</a> platform which is (grossly simplified) a typescript like version of node. Dependency management is completely different though in that the import call in your .ts files will contain fully qualified urls (including the desired version). Dependencies are usally cached for offline use. Now for this simple site a simple bash script would be fine as well, but the convenience of using an actual scripting language including great static typing support was nice.</p>
@@ -118,7 +121,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <a href="/impressum.html">Impressum und Datenschutz</a>
     </section>
     <section>
-        Copyright © Christoph Müller 2021.
+        Copyright © Christoph Müller 2022.
     </section>
 </footer>
 </body>
