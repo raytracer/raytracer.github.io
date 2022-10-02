@@ -30,7 +30,7 @@ jobs:
         run: |
           sudo apt install pandoc
           sudo apt install fd-find
-          ln -s $(which fdfind) /bin/fd
+          sudo ln -s $(which fdfind) /bin/fd
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
