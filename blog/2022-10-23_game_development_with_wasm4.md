@@ -18,5 +18,5 @@ The reduction in possibility helps a lot to create an actual finished product. M
 
 The code for the game can be found [here](https://github.com/raytracer/four-it-is). Down below you can see a screenshot of the finished game.
 
-![Game Screenshot](./2022-10-23_game_development_with_wasm4/screenshot.png)
+![Game Screenshot](./2022-10-23_game_development_with_wasm4/screenshot.png){ width=300px }
 
