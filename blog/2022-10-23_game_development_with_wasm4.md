@@ -10,7 +10,7 @@ By restricting yourself to 2d you can focus more time on the game design itself 
 
 ## Reducing the Problem Space further
 
-By choosing one of the many fantasy consoles out there (fictional, often severely restricted computers) you can reduce the of choices to made even further. There are quite a few options here (e.g. [PICO8](https://www.lexaloffle.com/pico-8.php)), but I chose [WASM4](https://wasm4.org/). WASM4 provides only 4 colors at a time, a resolution of 160x160 and a couple of channels for sound generation.  Furthermore RAM + Disk space is severely limited (64kb + 1kb). You can program it in basically any language that compiles to web assembly.
+By choosing one of the many fantasy consoles out there (fictional, often severely restricted computers) you can reduce the amount of choices to be made even further. There are quite a few options here (e.g. [PICO8](https://www.lexaloffle.com/pico-8.php)), but I chose [WASM4](https://wasm4.org/). WASM4 provides only 4 colors at a time, a resolution of 160x160 pixels and a couple of channels for sound generation.  Furthermore RAM + Disk space is severely limited (64kb + 1kb). You can program it in basically any language that compiles to web assembly.
 
 After choosing the console and the language ([AssemblyScript](https://www.assemblyscript.org/) in my case) I built my first little complete game in basically a single week as a side project. It is a clone of the _connect four_ classic. It is less than 500 lines long and features basic multiplayer functionality.
 
