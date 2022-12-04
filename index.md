@@ -50,8 +50,8 @@ My main areas of interest are programming languages and paradigms, Computer Grap
    ### [CryptoGraph](https://github.com/raytracer/CryptoGraph)
    CryptoGraph is an experimental social network that is able to deliver messages using an end-to-end encryption. It is web based and supports multiple devices of every user at the same time.</aside>
  <aside>
-   ### [Mailingful](https://mailingful.com)
-   Mailingful is an email service in the spirit of Google Inbox but with a focus on performance and minimality. See the website for more information.</aside>
+   ### [Mailingful](https://github.com/raytracer/mailingful)
+   Mailingful was an email service in the spirit of Google Inbox but with a focus on performance and minimality. See the git repo for more information.</aside>
  <aside>
    ### [UniWueMensa](https://github.com/raytracer/UniWueMensa)
    UniWueMensa is an Android Application that displays the latest cafeteria menu from the University of Wuerzburg as a swipeable list. Furthermore it reads the remaining credit on the student ID via NFC.</aside>
