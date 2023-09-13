@@ -1,5 +1,9 @@
 /* MVP.css v1.6.3 - https://github.com/andybrewer/mvp */
 
+main img {
+    max-width: 100%;
+}
+
 :root {
     --border-radius: 5px;
     --box-shadow: 2px 2px 10px;

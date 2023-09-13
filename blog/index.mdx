@@ -1,0 +1,31 @@
+---
+pagetitle: Blog Entries
+---
+
+import { globSync } from "glob";
+import { readFileSync } from "fs";
+import metadataParser from "markdown-yaml-metadata-parser";
+
+<ul>
+  {globSync("*.mdx", { ignore: "index.mdx", cwd: "./blog" })
+    .sort()
+    .reverse()
+    .map((f) => (
+      <li key={f}>
+        <strong>
+          <code>{f.substring(0, 10)} </code>
+          <span></span>
+          <a href={f.replace(".mdx", ".html")}>
+            {
+              metadataParser(
+                readFileSync("./blog/" + f, {
+                  encoding: "utf-8",
+                  flag: "r",
+                })
+              ).metadata.pagetitle
+            }
+          </a>
+        </strong>
+      </li>
+    ))}
+</ul>
