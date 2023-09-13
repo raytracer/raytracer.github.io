@@ -14,7 +14,12 @@ const files = await glob("**/*.mdx", { ignore: 'node_modules/**', dotRelative: t
 
 for (let page of files) {
   const { default: Page, frontmatter } = await import(page);
-  const html = renderToStaticMarkup(<MainTemplate path={page} pagetitle={frontmatter?.pagetitle}><Page /></MainTemplate>);
+  const html = renderToStaticMarkup(<MainTemplate path={page} pagetitle={frontmatter?.pagetitle}><Page components={{
+    img: props => <figure>
+      <img src={props.src} alt={props.alt} />
+      <figcaption>{props.alt}</figcaption>
+    </figure>
+  }} /></MainTemplate>);
 
   Bun.write(page.replace(".mdx", ".html").replace(".md", ".html"), html);
 }
