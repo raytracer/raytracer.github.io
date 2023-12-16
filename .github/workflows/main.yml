@@ -40,6 +40,6 @@ jobs:
         with:
           switches: -avzr --delete
           remote_path: /var/www/html/
-          remote_host: devops.raytracer.me
+          remote_host: raytracer.me
           remote_user: root
           remote_key: ${{ secrets.DEPLOY_KEY }}
