@@ -1,6 +1,9 @@
 ---
-pagetile: Blog Entries
+pagetitle: Blog Entries
 ---
+* **`2024-02-24`** [Developing a basic 2d Isometric Game](2024-02-24_2d-isometric.html)
+* **`2023-12-16`** [A new file hosting solution](2023-12-16_file_sync.html)
+* **`2022-10-23`** [Game Development with WASM4](2022-10-23_game_development_with_wasm4.html)
 * **`2022-08-15`** [Exploring No/Low-Code Solutions](2022-08-15_exploring_no_low-code_solutions.html)
 * **`2022-08-09`** [Choosing Services and Tools for a new Company](2022-08-09_choosing_service_and_tools.html)
 * **`2022-03-06`** [Building a Telegram bot for Todo management](2022-03-06_telegram_bot_for_todo_management.html)

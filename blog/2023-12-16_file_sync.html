@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Christoph Müller" />
+  <meta name="keywords" content="speedport, network, drive, sync" />
+  <title>A new file hosting solution</title>
+  <style>
+      figure{text-align: center;}
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="/mvp.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+    <header>
+        <nav>
+            <h3>raytracer.me</h3>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/blog">Blog</a></li>
+            </ul>
+        </nav>
+                        <h1 class="title">A new file hosting solution</h1>
+                    </header>
+<main>
+<p>I have been hosting a version of <a href="https://www.seafile.com/">seafile</a> for over 5 years. It served its purpose quite well. The concept of libraries helps to separate different files. The clients are also not bad though I had some problems with the android app and video playback. It seems to be quite picky when it comes to video file formats and it also sometimes has video playback hiccups. But most of these issues could easily be tolerated. The problem I have is that storage on my provider <a href="https://hetzner.de">hetzner</a> is quite expensive. I paid around 13€/month. Most of that because of storage. I only really needed the 6€/month option when it came to performance.</p>
+<p>So since living in the new house which has a decent 40mbit/s upload and a new speedport router I decided to build a local solution. It is made from the following components:</p>
+<ul>
+<li>A speedport router (Speedport Smart 4)</li>
+<li>A USB Gen 3.2 128 GB flash drive attached to the router</li>
+<li>A wireguard server/client solution (supported natively by the router)</li>
+</ul>
+<p>The following devices needed access to the files:</p>
+<ul>
+<li>My Phone (local and remote)</li>
+<li>My MacBook (local and remote)</li>
+<li>My desktop PC (local)</li>
+</ul>
+<p>The setup was surprisingly simple. I just needed to enable a couple of options on the router. The wireguard setup was simply a qr code I scanned with my phone then I exported it to my laptop as a .zip file. The windows PC would just use the native network drive functionality.</p>
+<p>All of this was working quite smoothly. There were only a couple of performance issues with network clients and the network discovery process. The windows explorer even crashed 2 times (seriously in 2023?). But since these drives have now been added to my favorites the discovery process is completed and performance has been pretty good so far. Since redundancy is now lost I added a rsync script to export some important files to my new smaller hetzner server. Overall I paid around 15€ for my usb flash drive and now pay around 6.50€/month for the new hetzner server. So around 3 months and the savings will have paid for the usb drive. The only downside is the required network / VPN connection.</p>
+<p><strong>Update (2024-02-06):</strong> Well after a recent problem with the usb drive and the router (it even corrupted some data) and the fact that the router only supports smbv1 which is not supported in iOS anymore I have switched to OneDrive’s cheapest option for 2€/month (100GB). Not as cheap as the usb drive solution, but at least it does not break the bank.</p>
+</main>
+<footer>
+    <section>
+        <a href="https://github.com/raytracer/website/edit/main/blog/2023-12-16_file_sync.md">Edit on GitHub</a>
+    </section>
+    <section>
+        <a href="/impressum.html">Impressum und Datenschutz</a>
+    </section>
+    <section>
+        Copyright © Christoph Müller 2024.
+    </section>
+</footer>
+</body>
+</html>

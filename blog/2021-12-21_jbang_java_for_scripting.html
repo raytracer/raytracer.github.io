@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Christoph Müller" />
+  <meta name="keywords" content="Scripting, Java, JBang, JShell" />
+  <title>Using JBang to build Java Scripts</title>
+  <style>
+      figure{text-align: center;}
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style>
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="/mvp.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+    <header>
+        <nav>
+            <h3>raytracer.me</h3>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/blog">Blog</a></li>
+            </ul>
+        </nav>
+                        <h1 class="title">Using JBang to build Java Scripts</h1>
+                    </header>
+<main>
+<p>I have been trying to find a great solution for writing scripts for at least 5 years now. The latest addition was <a href="https://deno.land/">deno</a> and typescript that I use to build the blog post overview for this site. In the past I tried <a href="https://ammonite.io/">ammonite</a> with scala, since I am quite heavily invested in the JVM eco system.</p>
+<p>But honestly nothing really stuck. I still use python or deno the most. And while python is great as an interactive calculator (though the lack of static typing bothers me – mypy exists, but still feels like a bit of a bandaid) I do not like to write larger programs with it. Deno is better in this regard but still has a quite immature eco system. Since I use a lot of Java in my professional life I wanted to explore if it would be a viable option. In the past Java was a bit too unwieldly as a scripting language, but since Java released versions 7 (new IO API), 8 (Lambdas + Streams) and 11 (var – local type inference) I wondered if this changed and Java could be used for scripting?</p>
+<p>Since Java 9 there is JShell which is a REPL like environment. A great first step in the right direction, but it is still missing an important ingredient: dependency management. Another point of critisicm would be missing or incomplete IDE integration.</p>
+<p>After doing some more research I found <a href="https://jbang.dev/">JBang</a>. It tickes most of my boxes:</p>
+<ul>
+<li>Shebang support via <code>//</code> instead of <code>#!</code></li>
+<li>Dependency managment via <code>//DEPS</code> or <code>@Grab</code> annotations</li>
+<li>Editor integration by temporarily creating a gradle project</li>
+<li>REPL like usage via <code>jbang --interactive</code> (uses JShell internally)</li>
+<li>(not that important but cool) GraalVM native-image support to create native executables</li>
+</ul>
+<p>Now I can finally use my favorite <a href="./2020-12-30_my_favorite_tech_stack.html">tech stack</a> to build scripts that start a web server.</p>
+<p>You can get started by installing JBang (e.g. via <code>brew</code>) and initializing a small example:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jbang</span> init HelloServer.java</span></code></pre></div>
+<p>Now for the more interesting part the content of <code>HelloServer.java</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">///usr/bin/env jbang &quot;$0&quot; &quot;$@&quot; ; exit $?</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">//DEPS io.javalin:javalin:4.1.1</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">//DEPS org.slf4j:slf4j-api:1.8.0-beta4</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">//DEPS org.slf4j:slf4j-simple:1.8.0-beta4</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">io</span><span class="op">.</span><span class="im">javalin</span><span class="op">.</span><span class="im">Javalin</span><span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> HelloServer <span class="op">{</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="kw">...</span> args<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">var</span> app <span class="op">=</span> Javalin<span class="op">.</span><span class="fu">create</span><span class="op">().</span><span class="fu">start</span><span class="op">(</span><span class="dv">7777</span><span class="op">);</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        app<span class="op">.</span><span class="fu">get</span><span class="op">(</span><span class="st">&quot;/&quot;</span><span class="op">,</span> ctx <span class="op">-&gt;</span> ctx<span class="op">.</span><span class="fu">result</span><span class="op">(</span><span class="st">&quot;Hello World&quot;</span><span class="op">));</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>The first line is the shebang (while still being valid java). The next three lines declare dependencies (Javalin as a webservice + SLF4j-simple for logging – no log4j necessary ;) ). What follows next is just a regular Java program to start a webserver on port 7777. To have proper IDE support the java file name needs to match the class name, though JBang itself does not care about that. Editing works via <code>jbang edit --open=code HelloServer.java</code> in case of VS Code. That creates a temp directory with a gradle project for the IDE. While this works great I would still prefer to edit the file directly.</p>
+<pre><code>[main] INFO io.javalin.Javalin -
+       __                      __ _            __ __
+      / /____ _ _   __ ____ _ / /(_)____      / // /
+ __  / // __ `/| | / // __ `// // // __ \    / // /_
+/ /_/ // /_/ / | |/ // /_/ // // // / / /   /__  __/
+\____/ \__,_/  |___/ \__,_//_//_//_/ /_/      /_/
+
+          https://javalin.io/documentation
+
+[main] INFO org.eclipse.jetty.util.log - Logging initialized @179ms to org.eclipse.jetty.util.log.Slf4jLog
+[main] INFO io.javalin.Javalin - Starting Javalin ...
+[main] INFO io.javalin.Javalin - You are running Javalin 4.1.1 (released October 10, 2021. Your Javalin version is 72 days old. Consider upgrading!).
+[main] INFO io.javalin.Javalin - Listening on http://localhost:7777/
+[main] INFO io.javalin.Javalin - Javalin started in 115ms \o/</code></pre>
+</main>
+<footer>
+    <section>
+        <a href="https://github.com/raytracer/website/edit/main/blog/2021-12-21_jbang_java_for_scripting.md">Edit on GitHub</a>
+    </section>
+    <section>
+        <a href="/impressum.html">Impressum und Datenschutz</a>
+    </section>
+    <section>
+        Copyright © Christoph Müller 2024.
+    </section>
+</footer>
+</body>
+</html>

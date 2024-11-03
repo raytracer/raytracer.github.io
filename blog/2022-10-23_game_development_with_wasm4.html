@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Christoph Müller" />
+  <meta name="keywords" content="wasm4, game development" />
+  <title>Game Development with WASM4</title>
+  <style>
+      figure{text-align: center;}
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="/mvp.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+    <header>
+        <nav>
+            <h3>raytracer.me</h3>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/blog">Blog</a></li>
+            </ul>
+        </nav>
+                        <h1 class="title">Game Development with WASM4</h1>
+                    </header>
+<main>
+<p>For a long time I have been interested in game development. I started when I was around 12 years old and got into 3d at the age of 16. I have always worked on small little projects or demos, but never really complete games. The biggest problem was underestimating the required work, loosing focus or just generally choosing the wrong tools. 3d graphics in particular can distract from game design by needing to focus on programming (DirectX, OpenGL, loading animations/models/textures, game architecture etc.), 3d modeling + rigging + animation, texture creation (diffuse, normal etc.) and sound/music all at the same time.</p>
+<p>By restricting yourself to 2d you can focus more time on the game design itself (using predefined assets will also help with that in 3d). Another way to help create a result is to fit the development inside a fixed time box of x days (e.g. 2 days in a game jam). While this makes certain games difficult or even impossible to create, overall this will help produce an actual finished result.</p>
+<h2 id="reducing-the-problem-space-further">Reducing the Problem Space further</h2>
+<p>By choosing one of the many fantasy consoles out there (fictional, often severely restricted computers) you can reduce the amount of choices to be made even further. There are quite a few options here (e.g. <a href="https://www.lexaloffle.com/pico-8.php">PICO8</a>), but I chose <a href="https://wasm4.org/">WASM4</a>. WASM4 provides only 4 colors at a time, a resolution of 160x160 pixels and a couple of channels for sound generation. Furthermore RAM + Disk space is severely limited (64kb + 1kb). You can program it in basically any language that compiles to web assembly.</p>
+<p>After choosing the console and the language (<a href="https://www.assemblyscript.org/">AssemblyScript</a> in my case) I built my first little complete game in basically a single week as a side project. It is a clone of the <em>connect four</em> classic. It is less than 500 lines long and features basic multiplayer functionality.</p>
+<p>The reduction in possibility helps a lot to create an actual finished product. My final goal would be to build a Anno 1602 or Stronghold like game. Unfortunately WASM4 is a bit too restricted for that (I could see some simplified version of Anno working, but not Stronghold), so I need to find something else for that. I already experimented, but the problem is that without some restrictions you can really lose yourself in details instead of making progress.</p>
+<p>The code for the game can be found <a href="https://github.com/raytracer/four-it-is">here</a>. Down below you can see a screenshot of the finished game.</p>
+<figure>
+<img src="./2022-10-23_game_development_with_wasm4/screenshot.png" width="300" alt="Game Screenshot" /><figcaption aria-hidden="true">Game Screenshot</figcaption>
+</figure>
+</main>
+<footer>
+    <section>
+        <a href="https://github.com/raytracer/website/edit/main/blog/2022-10-23_game_development_with_wasm4.md">Edit on GitHub</a>
+    </section>
+    <section>
+        <a href="/impressum.html">Impressum und Datenschutz</a>
+    </section>
+    <section>
+        Copyright © Christoph Müller 2024.
+    </section>
+</footer>
+</body>
+</html>
