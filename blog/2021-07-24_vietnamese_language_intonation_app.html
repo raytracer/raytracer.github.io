@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Christoph Müller" />
   <meta name="keywords" content="vietnamese, intonation, cgp, rnn, android" />
-  <title>Trying to build an Android App for Vietnamese Intonation Practice</title>
+  <title>Trying to build an Android App for Vietnamese Intonation
+Practice</title>
   <style>
       figure{text-align: center;}
       code{white-space: pre-wrap;}
@@ -15,6 +16,7 @@
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
   <style>
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +55,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +68,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -93,28 +95,89 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
                 <li><a href="/blog">Blog</a></li>
             </ul>
         </nav>
-                        <h1 class="title">Trying to build an Android App for Vietnamese Intonation Practice</h1>
+                        <h1 class="title">Trying to build an Android App
+for Vietnamese Intonation Practice</h1>
                     </header>
 <main>
-<p>For quite a while I have been studying Vietnamese now. Mostly just a couple of minutes after work. And while grammar and vocabulary is slowly improving the difficult intonation of vietnamese makes learning it quite frustrating. Words like ma, má, mà, mã, mạ and mả all are pronounced slightly differently. Practicing is of course best done with a native speaker, but what if you do not have anyone to practice with?</p>
-<p>Here the idea to create an android app comes into play. My first try was to use the in-built android voice recognition service and compare what the user said to what he/she should have been saying. But that quickly showed that the in-built speech recognition is not suitable at all for this kind of task. It is highly optimzied for sentences and common word combinations. So it will default to correct to phrases that sound similar if those are more common. Great for dictating a long paragraph, but useless for intonation practice.</p>
-<p>The next idea was to analyze the spectrum of the spoken word(s) and compare it to what a native spectrum looks like. The first idea was to compare the spectrum itself, but I quickly turned to a machine learning like approach. I found some articles recommending a RNN based solution where a slice of the spectrum would be mapped to a letter. The problems I had with this approach:</p>
+<p>For quite a while I have been studying Vietnamese now. Mostly just a
+couple of minutes after work. And while grammar and vocabulary is slowly
+improving the difficult intonation of vietnamese makes learning it quite
+frustrating. Words like ma, má, mà, mã, mạ and mả all are pronounced
+slightly differently. Practicing is of course best done with a native
+speaker, but what if you do not have anyone to practice with?</p>
+<p>Here the idea to create an android app comes into play. My first try
+was to use the in-built android voice recognition service and compare
+what the user said to what he/she should have been saying. But that
+quickly showed that the in-built speech recognition is not suitable at
+all for this kind of task. It is highly optimzied for sentences and
+common word combinations. So it will default to correct to phrases that
+sound similar if those are more common. Great for dictating a long
+paragraph, but useless for intonation practice.</p>
+<p>The next idea was to analyze the spectrum of the spoken word(s) and
+compare it to what a native spectrum looks like. The first idea was to
+compare the spectrum itself, but I quickly turned to a machine learning
+like approach. I found some articles recommending a RNN based solution
+where a slice of the spectrum would be mapped to a letter. The problems
+I had with this approach:</p>
 <ul>
-<li>it could have similiar issues like the in-built Android speech recogntion namely preferring more likely sounds based on preceding ones instead of the actual spoken ones</li>
+<li>it could have similiar issues like the in-built Android speech
+recogntion namely preferring more likely sounds based on preceding ones
+instead of the actual spoken ones</li>
 <li>it requires a ton of training data</li>
-<li>it requires that the training data and test data is labeled (obviously)</li>
+<li>it requires that the training data and test data is labeled
+(obviously)</li>
 </ul>
 <figure>
-<img src="2021-07-24_vietnamese_language_intonation_app.assets/má.png" alt="Spectrum of the word má" /><figcaption aria-hidden="true">Spectrum of the word <strong>má</strong></figcaption>
+<img src="2021-07-24_vietnamese_language_intonation_app.assets/má.png"
+alt="Spectrum of the word má" />
+<figcaption aria-hidden="true">Spectrum of the word
+<strong>má</strong></figcaption>
 </figure>
-<h2 id="ggp-cartesian-genetic-programming">GGP (Cartesian Genetic Programming)</h2>
-<p>So instead I turned to my favorite algorithm called CGP (Cartesian Genetic Programming). This algorithm basically generates a computation graph generated from a fixed <span class="math inline"><em>n</em> × <em>m</em></span> grid. Every cell has a type and a number of indices for its arguments/parameters. Furthermore every cell of a column of the grid can only index cells from previous columns (so to the left of it). The rightmost column of output nodes then determine a computation tree for every output node (the last column can have a different number of rows compared to the rest of the grid, same goes for the input column). All cell types and their indices into previous columns are then mutated in every iteration. If a gene has a better or <strong>equal</strong> (important) fitness value compared to the original gene it is chosen for the next iteration. There is a great paper discussing the current state of CGP that you can find <a href="https://link.springer.com/content/pdf/10.1007/s10710-019-09360-6.pdf">here</a>. CGP can produce fairly general solutions including neural networks. There are even approaches for integrating gradient descent into CGP, but I have not yet explored this direction.</p>
-<p>My CGP program is written in Java and returns a python fragment that I can test against my data. The only really interesting part is the fitness function which is roughly described by taking all the predicted characters for every slice of the spectrum, concatenating them, removing duplicates and trimming the end result. That result is than compared to the actual word by using the levenshtein distance. That is the fitness value of a gene. I modified that slightly later, but it is still mostly how it works. The code is included at the end of the blog post.</p>
+<h2 id="ggp-cartesian-genetic-programming">GGP (Cartesian Genetic
+Programming)</h2>
+<p>So instead I turned to my favorite algorithm called CGP (Cartesian
+Genetic Programming). This algorithm basically generates a computation
+graph generated from a fixed <span
+class="math inline"><em>n</em> × <em>m</em></span> grid. Every cell has
+a type and a number of indices for its arguments/parameters. Furthermore
+every cell of a column of the grid can only index cells from previous
+columns (so to the left of it). The rightmost column of output nodes
+then determine a computation tree for every output node (the last column
+can have a different number of rows compared to the rest of the grid,
+same goes for the input column). All cell types and their indices into
+previous columns are then mutated in every iteration. If a gene has a
+better or <strong>equal</strong> (important) fitness value compared to
+the original gene it is chosen for the next iteration. There is a great
+paper discussing the current state of CGP that you can find <a
+href="https://link.springer.com/content/pdf/10.1007/s10710-019-09360-6.pdf">here</a>.
+CGP can produce fairly general solutions including neural networks.
+There are even approaches for integrating gradient descent into CGP, but
+I have not yet explored this direction.</p>
+<p>My CGP program is written in Java and returns a python fragment that
+I can test against my data. The only really interesting part is the
+fitness function which is roughly described by taking all the predicted
+characters for every slice of the spectrum, concatenating them, removing
+duplicates and trimming the end result. That result is than compared to
+the actual word by using the levenshtein distance. That is the fitness
+value of a gene. I modified that slightly later, but it is still mostly
+how it works. The code is included at the end of the blog post.</p>
 <h2 id="results">Results</h2>
-<p>Let’s be honest here, the results where absolutely terrible. This is a hard problem. The CGP program is probably the smallest problem here, but finding the right width and overlap of the spectrum slices is alone a complicated issue. I used scipys <code>signal</code> package to compute the spectra and export them to json. I let the CGP program run for a couple of days on my server with variying number of rows, columns, levelsBack and mutation rates. But it was not really going anywhere.</p>
-<p>A better appoach for an app like this would probably just comparing the spectra themselves instead of trying to find a general solution for speech recognition.</p>
-<p>Nevertheless here is the java code. The python code is only a couple of lines and basically just calles <code>signal.spectrogram(samples, sample_rate)</code> and dumps that to json, so not too exciting.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">package</span><span class="im"> me</span><span class="op">.</span><span class="im">raytracer</span><span class="op">.</span><span class="im">cgpvietnamese</span><span class="op">;</span></span>
+<p>Let’s be honest here, the results where absolutely terrible. This is
+a hard problem. The CGP program is probably the smallest problem here,
+but finding the right width and overlap of the spectrum slices is alone
+a complicated issue. I used scipys <code>signal</code> package to
+compute the spectra and export them to json. I let the CGP program run
+for a couple of days on my server with variying number of rows, columns,
+levelsBack and mutation rates. But it was not really going anywhere.</p>
+<p>A better appoach for an app like this would probably just comparing
+the spectra themselves instead of trying to find a general solution for
+speech recognition.</p>
+<p>Nevertheless here is the java code. The python code is only a couple
+of lines and basically just calles
+<code>signal.spectrogram(samples, sample_rate)</code> and dumps that to
+json, so not too exciting.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">package</span><span class="im"> me</span><span class="op">.</span><span class="im">raytracer</span><span class="op">.</span><span class="im">cgpvietnamese</span><span class="op">;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">io</span><span class="op">.</span><span class="im">IOException</span><span class="op">;</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">nio</span><span class="op">.</span><span class="im">file</span><span class="op">.</span><span class="im">Files</span><span class="op">;</span></span>
@@ -423,7 +486,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </main>
 <footer>
     <section>
-        <a href="https://github.com/raytracer/website/edit/main/blog/2021-07-24_vietnamese_language_intonation_app.md">Edit on GitHub</a>
+        <a href="https://github.com/raytracer/website/edit/main/./blog/2021-07-24_vietnamese_language_intonation_app.md">Edit on GitHub</a>
     </section>
     <section>
         <a href="/impressum.html">Impressum und Datenschutz</a>

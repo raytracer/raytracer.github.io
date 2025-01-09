@@ -28,85 +28,199 @@
                 <li><a href="/blog">Blog</a></li>
             </ul>
         </nav>
-                        <h1 class="title">Exploring No/Low-Code Solutions</h1>
+                        <h1 class="title">Exploring No/Low-Code
+Solutions</h1>
                     </header>
 <main>
-<p>A long standing dream of humanity is probably to create applications without the need to learn a programming language. This manifests itself in millions of excel sheets that are probably running a lot more important processes in quite a few companies than one might guess. Now while Excel is very accessible for ordinary users and makes it easy to create simple formulas and even complex programs through VBA it usually falls flat when the need to scale arises.</p>
-<p>Here no/low code solutions come into play by restricting the user input through column types, but at the same time offering a rich UI to configure these restrictions and constraints. This makes it possible for the computer to help the user, because it has a better understanding of what is going on. This idea is of course not new. Microsoft Access has provided a solution for decades now, but it was never really polished and never got anywhere near the momentum of Excel.</p>
-<p>New SaaS solutions like <a href="https://www.airtable.com/">Airtable</a>, <a href="https://seatable.io/">Seatable</a>, <a href="https://baserow.io/">Baserow</a> or <a href="https://www.nocodb.com/">NocoDB</a> want to change that. All of them have a very similar approach. NocoDB is notably different, since it can even work with existing databases (multiple database types like Sqlite, MariaDB and PostgreSQL are supported). It is quite new and the interface is not really polished yet. The other solution have a lot in common. If you understand one of them, you are not going to have any problems switching (save for one or two features maybe).</p>
-<p>I will choose Seatable for my future examples. It is from Germany (as am I) and it can be self hosted (just like all of them except Airtable).</p>
-<h3 id="creating-a-simple-invoicing-system">Creating a simple Invoicing System</h3>
-<p>A lot of examples and templates of these products are of course directed at the general public and beginners (I mean a wedding planner as a prime example for a No-Code solution, really?). But as a Computer Scientist I am more interested in real business processes and how they can be mapped these products. Let’s start with a simple example. Say we want to create invoices, render them to PDF and send them out to clients. Additionally we want to create some basic statistics to visualize our cashflow. Let’s see what the strength and weaknesses of these solutions are.</p>
+<p>A long standing dream of humanity is probably to create applications
+without the need to learn a programming language. This manifests itself
+in millions of excel sheets that are probably running a lot more
+important processes in quite a few companies than one might guess. Now
+while Excel is very accessible for ordinary users and makes it easy to
+create simple formulas and even complex programs through VBA it usually
+falls flat when the need to scale arises.</p>
+<p>Here no/low code solutions come into play by restricting the user
+input through column types, but at the same time offering a rich UI to
+configure these restrictions and constraints. This makes it possible for
+the computer to help the user, because it has a better understanding of
+what is going on. This idea is of course not new. Microsoft Access has
+provided a solution for decades now, but it was never really polished
+and never got anywhere near the momentum of Excel.</p>
+<p>New SaaS solutions like <a
+href="https://www.airtable.com/">Airtable</a>, <a
+href="https://seatable.io/">Seatable</a>, <a
+href="https://baserow.io/">Baserow</a> or <a
+href="https://www.nocodb.com/">NocoDB</a> want to change that. All of
+them have a very similar approach. NocoDB is notably different, since it
+can even work with existing databases (multiple database types like
+Sqlite, MariaDB and PostgreSQL are supported). It is quite new and the
+interface is not really polished yet. The other solution have a lot in
+common. If you understand one of them, you are not going to have any
+problems switching (save for one or two features maybe).</p>
+<p>I will choose Seatable for my future examples. It is from Germany (as
+am I) and it can be self hosted (just like all of them except
+Airtable).</p>
+<h3 id="creating-a-simple-invoicing-system">Creating a simple Invoicing
+System</h3>
+<p>A lot of examples and templates of these products are of course
+directed at the general public and beginners (I mean a wedding planner
+as a prime example for a No-Code solution, really?). But as a Computer
+Scientist I am more interested in real business processes and how they
+can be mapped these products. Let’s start with a simple example. Say we
+want to create invoices, render them to PDF and send them out to
+clients. Additionally we want to create some basic statistics to
+visualize our cashflow. Let’s see what the strength and weaknesses of
+these solutions are.</p>
 <p>We will create 3 tables:</p>
 <ul>
 <li>Invoices - Including our final PDFs</li>
 <li>Position - The individual positions of an invoice</li>
 <li>Customers - Basic information to print on the invoice</li>
 </ul>
-<p>Let’s start with the customer table, since it does not depend on other tables. We create a new base (let’s name it “Simple Invoices”) and rename the existing table to “Customers”.</p>
+<p>Let’s start with the customer table, since it does not depend on
+other tables. We create a new base (let’s name it “Simple Invoices”) and
+rename the existing table to “Customers”.</p>
 <figure>
-<img src="./2022-08-15_exploring_no_low-code_solutions/customers.png" alt="Customers Table" /><figcaption aria-hidden="true">Customers Table</figcaption>
+<img src="./2022-08-15_exploring_no_low-code_solutions/customers.png"
+alt="Customers Table" />
+<figcaption aria-hidden="true">Customers Table</figcaption>
 </figure>
-<p>As you can see we just list the number, name and the address here (they are all text fields except for the first column, it has the <code>auto number</code> type). The column on the left is the primary column. It is similar but not the same as the primary key of a database. It supports less types than the other columns. Currently one of the biggest difference between Airtable and Seatable here is the support of formulas in the primary column.</p>
-<p>Let’s continue with the invoices table. Create a new table by clicking the plus icon and name it “Invoices”.</p>
+<p>As you can see we just list the number, name and the address here
+(they are all text fields except for the first column, it has the
+<code>auto number</code> type). The column on the left is the primary
+column. It is similar but not the same as the primary key of a database.
+It supports less types than the other columns. Currently one of the
+biggest difference between Airtable and Seatable here is the support of
+formulas in the primary column.</p>
+<p>Let’s continue with the invoices table. Create a new table by
+clicking the plus icon and name it “Invoices”.</p>
 <figure>
-<img src="./2022-08-15_exploring_no_low-code_solutions/invoices.png" alt="Invoices" /><figcaption aria-hidden="true">Invoices</figcaption>
+<img src="./2022-08-15_exploring_no_low-code_solutions/invoices.png"
+alt="Invoices" />
+<figcaption aria-hidden="true">Invoices</figcaption>
 </figure>
 <p>Their are 6 columns:</p>
 <ul>
-<li>We create a auto number column for the invoice number it uses the current year as a prefix</li>
-<li>We create a reference / link column to the “Customers” table to reference the customer (remember to remove the checkbox for allowing multiple customers when creating this column, see picture below)</li>
-<li>The next column is the date of the invoice, we could use a <code>created</code> type column here if we usually send out invoices the same day it was created</li>
-<li>We define a global tax rate that applies to all positions (a simplification, but depending on the business it might just be enough)</li>
-<li>A short description with a default value that tells the customer to not forget to mention the invoice number in the bank transfer (can be changed)</li>
-<li>The last column is a <code>file</code> column, it stores the final PDF</li>
+<li>We create a auto number column for the invoice number it uses the
+current year as a prefix</li>
+<li>We create a reference / link column to the “Customers” table to
+reference the customer (remember to remove the checkbox for allowing
+multiple customers when creating this column, see picture below)</li>
+<li>The next column is the date of the invoice, we could use a
+<code>created</code> type column here if we usually send out invoices
+the same day it was created</li>
+<li>We define a global tax rate that applies to all positions (a
+simplification, but depending on the business it might just be
+enough)</li>
+<li>A short description with a default value that tells the customer to
+not forget to mention the invoice number in the bank transfer (can be
+changed)</li>
+<li>The last column is a <code>file</code> column, it stores the final
+PDF</li>
 </ul>
 <figure>
-<img src="./2022-08-15_exploring_no_low-code_solutions/customer-link.png" width="250" alt="Link Customer" /><figcaption aria-hidden="true">Link Customer</figcaption>
+<img
+src="./2022-08-15_exploring_no_low-code_solutions/customer-link.png"
+width="250" alt="Link Customer" />
+<figcaption aria-hidden="true">Link Customer</figcaption>
 </figure>
-<p>Before we can define the button and the invoice layout we must first create our final table, the positions table.</p>
+<p>Before we can define the button and the invoice layout we must first
+create our final table, the positions table.</p>
 <p>Create a table called “Postions”.</p>
 <figure>
-<img src="./2022-08-15_exploring_no_low-code_solutions/positions.png" alt="Invoices" /><figcaption aria-hidden="true">Invoices</figcaption>
+<img src="./2022-08-15_exploring_no_low-code_solutions/positions.png"
+alt="Invoices" />
+<figcaption aria-hidden="true">Invoices</figcaption>
 </figure>
 <p>This table has 7 columns:</p>
 <ul>
 <li>It has a auto number primary column (not strictly necessary)</li>
-<li>A reference / link to a single invoice (remember to remove the checkbox for allowing multiple invoices when creating this column)</li>
+<li>A reference / link to a single invoice (remember to remove the
+checkbox for allowing multiple invoices when creating this column)</li>
 <li>A short description of the item</li>
-<li>A net price without tax (a <code>number</code> / <code>currency</code>)</li>
+<li>A net price without tax (a <code>number</code> /
+<code>currency</code>)</li>
 <li>An amount (a <code>number</code> )</li>
 <li>A type (we use a single choice here)</li>
-<li>The combined net price as a <code>formula</code> (see picture below for details)</li>
+<li>The combined net price as a <code>formula</code> (see picture below
+for details)</li>
 </ul>
 <figure>
-<img src="./2022-08-15_exploring_no_low-code_solutions/combined-net-price.png" width="250" alt="Combined Net Price" /><figcaption aria-hidden="true">Combined Net Price</figcaption>
+<img
+src="./2022-08-15_exploring_no_low-code_solutions/combined-net-price.png"
+width="250" alt="Combined Net Price" />
+<figcaption aria-hidden="true">Combined Net Price</figcaption>
 </figure>
-<p>Once we are done with that we can go back to the invoices table and create two new columns. One for adding all the positions and one for multiplying the result with our tax rate. You can also see that the new “Positions” column appeared all by itself when we referenced the invoice in the “Positions” table.</p>
+<p>Once we are done with that we can go back to the invoices table and
+create two new columns. One for adding all the positions and one for
+multiplying the result with our tax rate. You can also see that the new
+“Positions” column appeared all by itself when we referenced the invoice
+in the “Positions” table.</p>
 <figure>
-<img src="./2022-08-15_exploring_no_low-code_solutions/net-price-invoice.png" width="250" alt="Combined Net Price" /><figcaption aria-hidden="true">Combined Net Price</figcaption>
+<img
+src="./2022-08-15_exploring_no_low-code_solutions/net-price-invoice.png"
+width="250" alt="Combined Net Price" />
+<figcaption aria-hidden="true">Combined Net Price</figcaption>
 </figure>
 <figure>
-<img src="./2022-08-15_exploring_no_low-code_solutions/price-with-tax.png" width="250" alt="Price With Tax" /><figcaption aria-hidden="true">Price With Tax</figcaption>
+<img
+src="./2022-08-15_exploring_no_low-code_solutions/price-with-tax.png"
+width="250" alt="Price With Tax" />
+<figcaption aria-hidden="true">Price With Tax</figcaption>
 </figure>
-<p>And that is it! The only thing left is creating a PDF from our table. This is done by enabling the “Page Designer” plugin (see the right corner) and designing a new template. My example can be seen below. It is pretty self explanatory. Just drag and drop the desired fields into the template.</p>
+<p>And that is it! The only thing left is creating a PDF from our table.
+This is done by enabling the “Page Designer” plugin (see the right
+corner) and designing a new template. My example can be seen below. It
+is pretty self explanatory. Just drag and drop the desired fields into
+the template.</p>
 <figure>
-<img src="./2022-08-15_exploring_no_low-code_solutions/template.png" alt="PDF Template" /><figcaption aria-hidden="true">PDF Template</figcaption>
+<img src="./2022-08-15_exploring_no_low-code_solutions/template.png"
+alt="PDF Template" />
+<figcaption aria-hidden="true">PDF Template</figcaption>
 </figure>
-<p>Finally create a new column “Action” in the “Invoices” table to generate PDFs, by choosing the <code>button</code> type and and selecting generate PDF as an option.</p>
+<p>Finally create a new column “Action” in the “Invoices” table to
+generate PDFs, by choosing the <code>button</code> type and and
+selecting generate PDF as an option.</p>
 <figure>
-<img src="./2022-08-15_exploring_no_low-code_solutions/pdf-button.jpeg" width="250" alt="Generation Button" /><figcaption aria-hidden="true">Generation Button</figcaption>
+<img src="./2022-08-15_exploring_no_low-code_solutions/pdf-button.jpeg"
+width="250" alt="Generation Button" />
+<figcaption aria-hidden="true">Generation Button</figcaption>
 </figure>
 <p>That is it, we are done here!</p>
 <h4 id="downsides">Downsides</h4>
-<p>There are a couple of downsides especially when it comes to nesting. Tables can reference other tables, but a table like “Positions” really only makes sense in combination with an invoice. You can introduce groups in a view and that helps a lot, but still “Positions” should probably be embedded into “Invoices”. This becomes more apparent when we want to create forms. Forms cannot yet create nested elements on the fly, so you would have to call multiple forms in succession. This is not really practical yet.</p>
-<h3 id="going-a-different-route-for-developers-only">Going a different route (for developers only)</h3>
-<p>For developers there are of course other options. One would be to use a code generator like <a href="https://www.jhipster.tech/">JHipster</a>. JHipster uses a domain modeling language to generate backend + frontend + database. I like the tech stack a lot, but the problem I see is the amount of friction in the beginning. You still have to generate scaffolding and write the domain language file. Whereas in something like Airtable you can start right away. JHipster is the much more flexible approach of course, but in “real” individual development projects I usually have the extra bit of time to do what JHipster does manually. And part of <a href="./2020-12-30_my_favorite_tech_stack.md">our workflow</a> is actually already automated.</p>
-<p>Another possibility I just heard of is <a href="https://www.superblocks.com/">Superblocks</a>. It is more like Lego for developers much more akin to something like Airtable. I like the ideas of it. It also can be used to create Dashboards and Forms and plays nicely with custom code. If a customer is willing to make some compromises (sadly that is often not the case) he/she could save quite a bit of money here and still get a decent product.</p>
+<p>There are a couple of downsides especially when it comes to nesting.
+Tables can reference other tables, but a table like “Positions” really
+only makes sense in combination with an invoice. You can introduce
+groups in a view and that helps a lot, but still “Positions” should
+probably be embedded into “Invoices”. This becomes more apparent when we
+want to create forms. Forms cannot yet create nested elements on the
+fly, so you would have to call multiple forms in succession. This is not
+really practical yet.</p>
+<h3 id="going-a-different-route-for-developers-only">Going a different
+route (for developers only)</h3>
+<p>For developers there are of course other options. One would be to use
+a code generator like <a href="https://www.jhipster.tech/">JHipster</a>.
+JHipster uses a domain modeling language to generate backend + frontend
++ database. I like the tech stack a lot, but the problem I see is the
+amount of friction in the beginning. You still have to generate
+scaffolding and write the domain language file. Whereas in something
+like Airtable you can start right away. JHipster is the much more
+flexible approach of course, but in “real” individual development
+projects I usually have the extra bit of time to do what JHipster does
+manually. And part of <a
+href="./2020-12-30_my_favorite_tech_stack.md">our workflow</a> is
+actually already automated.</p>
+<p>Another possibility I just heard of is <a
+href="https://www.superblocks.com/">Superblocks</a>. It is more like
+Lego for developers much more akin to something like Airtable. I like
+the ideas of it. It also can be used to create Dashboards and Forms and
+plays nicely with custom code. If a customer is willing to make some
+compromises (sadly that is often not the case) he/she could save quite a
+bit of money here and still get a decent product.</p>
 </main>
 <footer>
     <section>
-        <a href="https://github.com/raytracer/website/edit/main/blog/2022-08-15_exploring_no_low-code_solutions.md">Edit on GitHub</a>
+        <a href="https://github.com/raytracer/website/edit/main/./blog/2022-08-15_exploring_no_low-code_solutions.md">Edit on GitHub</a>
     </section>
     <section>
         <a href="/impressum.html">Impressum und Datenschutz</a>

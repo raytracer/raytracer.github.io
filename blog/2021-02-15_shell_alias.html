@@ -31,20 +31,49 @@
                         <h1 class="title">My Shell Aliases</h1>
                     </header>
 <main>
-<p>My favorite shell is the <a href="https://fishshell.com/">fish</a> shell. It does not need much configuration and works fairly well out of the box including color highlighting and smart completions and suggestions. Except for the mediocre vim mode (<strong>UPDATE 2021-03</strong> this has gotten so much better now! Vi mode bindings now support dh, dl, c0, cf, ct, cF, cT, ch, cl, y0, ci, ca, yi, ya, di, da, d;, d,, o, O) I do not have much to complain about. There are just a couple of things that I do miss when working in the shell:</p>
+<p>My favorite shell is the <a href="https://fishshell.com/">fish</a>
+shell. It does not need much configuration and works fairly well out of
+the box including color highlighting and smart completions and
+suggestions. Except for the mediocre vim mode (<strong>UPDATE
+2021-03</strong> this has gotten so much better now! Vi mode bindings
+now support dh, dl, c0, cf, ct, cF, cT, ch, cl, y0, ci, ca, yi, ya, di,
+da, d;, d,, o, O) I do not have much to complain about. There are just a
+couple of things that I do miss when working in the shell:</p>
 <ul>
-<li>jumping to one of my git projects (either for work or personal projects)</li>
-<li>searching for a specific subdirectory that may be burried somewhere deep</li>
+<li>jumping to one of my git projects (either for work or personal
+projects)</li>
+<li>searching for a specific subdirectory that may be burried somewhere
+deep</li>
 </ul>
-<p>For the first problem I use a rust tool called <a href="https://docs.rs/crate/projector/0.5.0"><code>projector</code></a> in combination with the great <a href="https://github.com/junegunn/fzf"><code>fzf</code></a>. <code>projector</code> has a config file to specify all the root locations for possible git repositories (e.g. the intellij folder and a local repos folder etc.). The output is fed into <code>fzf</code> for an interactive search. I pass the <code>--layout=reverse</code> option to display the results below for a better overview. I call the alias <code>jump</code>:</p>
+<p>For the first problem I use a rust tool called <a
+href="https://docs.rs/crate/projector/0.5.0"><code>projector</code></a>
+in combination with the great <a
+href="https://github.com/junegunn/fzf"><code>fzf</code></a>.
+<code>projector</code> has a config file to specify all the root
+locations for possible git repositories (e.g. the intellij folder and a
+local repos folder etc.). The output is fed into <code>fzf</code> for an
+interactive search. I pass the <code>--layout=reverse</code> option to
+display the results below for a better overview. I call the alias
+<code>jump</code>:</p>
 <pre><code>alias jump &quot;cd (projector list | fzf --layout=reverse --height=40%)&quot;</code></pre>
-<p>That takes care of the first problem. The second problem can also be solved via <code>fzf</code>. Actually most shells already offer some kind of <code>fzf</code>-plugin with some keyboard shortcut to interactively search subdirectories. But I have found that those plugin usally do not play nice with my local (german) keyboard layout and make quite a few assumptions I don’t share. Instead I usually just use my own alias which calls the rust tool <a href="https://github.com/sharkdp/fd"><code>fd</code></a>. <code>fd</code> ist great alternative to <code>find</code> with a much more intuitive UI and features like respecting the gitignore by default.</p>
+<p>That takes care of the first problem. The second problem can also be
+solved via <code>fzf</code>. Actually most shells already offer some
+kind of <code>fzf</code>-plugin with some keyboard shortcut to
+interactively search subdirectories. But I have found that those plugin
+usally do not play nice with my local (german) keyboard layout and make
+quite a few assumptions I don’t share. Instead I usually just use my own
+alias which calls the rust tool <a
+href="https://github.com/sharkdp/fd"><code>fd</code></a>.
+<code>fd</code> ist great alternative to <code>find</code> with a much
+more intuitive UI and features like respecting the gitignore by
+default.</p>
 <pre><code>alias deep &quot;cd (fd -t d | fzf --layout=reverse --height=40%)&quot;</code></pre>
-<p>I call the alias <code>deep</code>. <code>fd</code> ist called with the <code>-t d</code> option as only directories should be searched.</p>
+<p>I call the alias <code>deep</code>. <code>fd</code> ist called with
+the <code>-t d</code> option as only directories should be searched.</p>
 </main>
 <footer>
     <section>
-        <a href="https://github.com/raytracer/website/edit/main/blog/2021-02-15_shell_alias.md">Edit on GitHub</a>
+        <a href="https://github.com/raytracer/website/edit/main/./blog/2021-02-15_shell_alias.md">Edit on GitHub</a>
     </section>
     <section>
         <a href="/impressum.html">Impressum und Datenschutz</a>

@@ -5,7 +5,8 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <meta name="author" content="Christoph Müller" />
-  <meta name="keywords" content="tech stack, java, javalin, typescript, blog" />
+  <meta name="keywords" content="tech
+stack, java, javalin, typescript, blog" />
   <title>My favorite technology stack</title>
   <style>
       figure{text-align: center;}
@@ -15,6 +16,7 @@
       div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
   <style>
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +55,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +68,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -93,38 +95,114 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
                 <li><a href="/blog">Blog</a></li>
             </ul>
         </nav>
-                        <h1 class="title">My favorite technology stack</h1>
+                        <h1 class="title">My favorite technology
+stack</h1>
                     </header>
 <main>
-<p>At <a href="https://olyro.de">Olyro</a> we built a lot of web applications. Usually consisting of a backend service and a SPA frontend. Over the years we went through quite a few technologies, but only a few really stuck with us:</p>
+<p>At <a href="https://olyro.de">Olyro</a> we built a lot of web
+applications. Usually consisting of a backend service and a SPA
+frontend. Over the years we went through quite a few technologies, but
+only a few really stuck with us:</p>
 <ul>
 <li>Postgres</li>
 <li>JVM - Java (&gt;= 8)</li>
 <li><a href="https://javalin.io/">Javalin</a></li>
-<li><a href="https://github.com/vojtechhabarta/typescript-generator">typescript-generator</a></li>
+<li><a
+href="https://github.com/vojtechhabarta/typescript-generator">typescript-generator</a></li>
 <li>TypeScript</li>
 <li>React</li>
 </ul>
 <h1 id="postgres">Postgres</h1>
-<p>Postgres is a rock solid open-source database. Especially with the introduction of the json(b) types for columns it really expanded its range of possible use cases. The enum types are a great addition to reduce illegal states. Features like CTE (Common Table Expressions) make it a lot easier to query graph like structures. When it comes to connecting Postgres to the backend programming language there are of course the possibilities to use an ORM or a special Query-DSL. But after a few years of working with these technologies they usually fall apart at some time, they usually develop bad performance issues or do not support some Postgres feature that requires you to drop back to plain SQL in a normal String.</p>
-<p>So I usually stick to plain SQL with prepared statements even if compile time checking and IDE support is lacking. A well written java DSL with support for a wide range of Postgres-SQL that composes well (e.g. can multiple queries/inserts be wrapped in a single transaction) and has a great API would be something that I am really interested in. So if someone has a suggestion, hit me up!</p>
+<p>Postgres is a rock solid open-source database. Especially with the
+introduction of the json(b) types for columns it really expanded its
+range of possible use cases. The enum types are a great addition to
+reduce illegal states. Features like CTE (Common Table Expressions) make
+it a lot easier to query graph like structures. When it comes to
+connecting Postgres to the backend programming language there are of
+course the possibilities to use an ORM or a special Query-DSL. But after
+a few years of working with these technologies they usually fall apart
+at some time, they usually develop bad performance issues or do not
+support some Postgres feature that requires you to drop back to plain
+SQL in a normal String.</p>
+<p>So I usually stick to plain SQL with prepared statements even if
+compile time checking and IDE support is lacking. A well written java
+DSL with support for a wide range of Postgres-SQL that composes well
+(e.g. can multiple queries/inserts be wrapped in a single transaction)
+and has a great API would be something that I am really interested in.
+So if someone has a suggestion, hit me up!</p>
 <h1 id="jvm---java-8">JVM - Java (&gt;=8)</h1>
-<p>While there are some properties of the JVM that I do not like (mostly its handling of the default maximum heap size and general memory consumption) I have really come to enjoy its great ecosystem from debuggers to profilers and the great garbage collector. Java as a language has also evolved to a point where I can really recommend using it. Sure the type system is still very OOP-heavy and could use some further inspiration from functional languages, but with features like lambdas, the Stream-API and records (14+ preview feature) it can really develop a nice flow when programming. Combine that with a great IDE experience (thanks to LSP now also in VS Code and (n)vim) and you got yourself a nice productive language with a static type system. A bonus point is that the hiring process is significantly simpler than say for a language like Scala even if that means that the range of java proficiency for applicants is of course much wider than that of Scala applicants and the filtering process needs to be a tad more sophisticated.</p>
+<p>While there are some properties of the JVM that I do not like (mostly
+its handling of the default maximum heap size and general memory
+consumption) I have really come to enjoy its great ecosystem from
+debuggers to profilers and the great garbage collector. Java as a
+language has also evolved to a point where I can really recommend using
+it. Sure the type system is still very OOP-heavy and could use some
+further inspiration from functional languages, but with features like
+lambdas, the Stream-API and records (14+ preview feature) it can really
+develop a nice flow when programming. Combine that with a great IDE
+experience (thanks to LSP now also in VS Code and (n)vim) and you got
+yourself a nice productive language with a static type system. A bonus
+point is that the hiring process is significantly simpler than say for a
+language like Scala even if that means that the range of java
+proficiency for applicants is of course much wider than that of Scala
+applicants and the filtering process needs to be a tad more
+sophisticated.</p>
 <h1 id="javalin">Javalin</h1>
-<p>Javalin is finally a web “framework” to my test. It has very little overhead and magic behavior. You don’t need annotations or inheritance. You just pass a lambda or a static method reference to the router. The method receives a context and returns a context. Now that is not perfect of course, separate request and response types would be preferable from a type safety standpoint, but it makes chaining these handlers to create middleware components really easy.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span><span class="op">(</span><span class="st">&quot;/&quot;</span><span class="op">,</span> ctx <span class="op">-&gt;</span> ctx<span class="op">.</span><span class="fu">result</span><span class="op">(</span><span class="st">&quot;Hello World&quot;</span><span class="op">));</span></span></code></pre></div>
-<p>What I like about it is that it does never stand in your way. It has convenience methods (e.g. <code>ctx.bodyAsClass(class)</code>) to make your life easier, but you can always drop back to the bare-bones body (as a string) and headers (as a hashmap) if you need to. I like this so much more than all the old java enterprise technologies maybe because it reminds me of languages like go.</p>
+<p>Javalin is finally a web “framework” to my test. It has very little
+overhead and magic behavior. You don’t need annotations or inheritance.
+You just pass a lambda or a static method reference to the router. The
+method receives a context and returns a context. Now that is not perfect
+of course, separate request and response types would be preferable from
+a type safety standpoint, but it makes chaining these handlers to create
+middleware components really easy.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>app<span class="op">.</span><span class="fu">get</span><span class="op">(</span><span class="st">&quot;/&quot;</span><span class="op">,</span> ctx <span class="op">-&gt;</span> ctx<span class="op">.</span><span class="fu">result</span><span class="op">(</span><span class="st">&quot;Hello World&quot;</span><span class="op">));</span></span></code></pre></div>
+<p>What I like about it is that it does never stand in your way. It has
+convenience methods (e.g. <code>ctx.bodyAsClass(class)</code>) to make
+your life easier, but you can always drop back to the bare-bones body
+(as a string) and headers (as a hashmap) if you need to. I like this so
+much more than all the old java enterprise technologies maybe because it
+reminds me of languages like go.</p>
 <h1 id="typescript-generator">typescript-generator</h1>
-<p>This little gem automatically generates typescript type definitions from your java classes. I more or less found it by accident once and have been a big fan of it ever since. It supports a wildcard syntax for classes and inner classes that you define in your <code>pom.xml</code> file. That makes it really easy to e.g. translate all classes in the <code>model</code> package. The classes should of course mostly be POJO classes, but I highly recommend checking it out.</p>
+<p>This little gem automatically generates typescript type definitions
+from your java classes. I more or less found it by accident once and
+have been a big fan of it ever since. It supports a wildcard syntax for
+classes and inner classes that you define in your <code>pom.xml</code>
+file. That makes it really easy to e.g. translate all classes in the
+<code>model</code> package. The classes should of course mostly be POJO
+classes, but I highly recommend checking it out.</p>
 <h1 id="typescript">TypeScript</h1>
-<p>This goes without saying from the previous point, but I am a big TypeScript advocate. I think it hits the sweet spot between productivity, familiarity and type safety just perfectly. Sure languages like e.g. <a href="https://elm-lang.org/">elm</a> may be better languages and support type features typescript never will (like code generation based on types, it is all just JS after all), but these other languages usually come with their own baggage and problems, small ecosystem and are difficult to hire for. Now I don’t think I will be using it 20 years from now, but until web assembly really takes off and makes compile-to-JS unnecessary I see no reason to switch to a different frontend language (meanwhile <a href="https://www.assemblyscript.org/">assembly script</a> makes life easier for high performance applications).</p>
+<p>This goes without saying from the previous point, but I am a big
+TypeScript advocate. I think it hits the sweet spot between
+productivity, familiarity and type safety just perfectly. Sure languages
+like e.g. <a href="https://elm-lang.org/">elm</a> may be better
+languages and support type features typescript never will (like code
+generation based on types, it is all just JS after all), but these other
+languages usually come with their own baggage and problems, small
+ecosystem and are difficult to hire for. Now I don’t think I will be
+using it 20 years from now, but until web assembly really takes off and
+makes compile-to-JS unnecessary I see no reason to switch to a different
+frontend language (meanwhile <a
+href="https://www.assemblyscript.org/">assembly script</a> makes life
+easier for high performance applications).</p>
 <h1 id="react">React</h1>
-<p>After trying dozens of frontend libraries I have settled on react (or <a href="https://preactjs.com/">preact</a> if I need something lighter). I had been using angular and knockout.js for a long time and was very skeptical of the jsx-format in the beginning. I just always preferred template languages and writing pure HTML. But after a while I have really come to like it especially the typed .tsx version of it, it is very close to actual HTML, but typed. The advent of hooks then cemented the “reign” of react for me. It just feels lighter and easier than libraries like angular in almost all cases now. You do not have to fight change detection and hooks are still quite light weight to write and read that the missing two-way binding is not a problem anymore.</p>
-<p>This concludes the stack I hope I could show some of the advantages of these particular technologies.</p>
+<p>After trying dozens of frontend libraries I have settled on react (or
+<a href="https://preactjs.com/">preact</a> if I need something lighter).
+I had been using angular and knockout.js for a long time and was very
+skeptical of the jsx-format in the beginning. I just always preferred
+template languages and writing pure HTML. But after a while I have
+really come to like it especially the typed .tsx version of it, it is
+very close to actual HTML, but typed. The advent of hooks then cemented
+the “reign” of react for me. It just feels lighter and easier than
+libraries like angular in almost all cases now. You do not have to fight
+change detection and hooks are still quite light weight to write and
+read that the missing two-way binding is not a problem anymore.</p>
+<p>This concludes the stack I hope I could show some of the advantages
+of these particular technologies.</p>
 </main>
 <footer>
     <section>
-        <a href="https://github.com/raytracer/website/edit/main/blog/2020-12-30_my_favorite_tech_stack.md">Edit on GitHub</a>
+        <a href="https://github.com/raytracer/website/edit/main/./blog/2020-12-30_my_favorite_tech_stack.md">Edit on GitHub</a>
     </section>
     <section>
         <a href="/impressum.html">Impressum und Datenschutz</a>

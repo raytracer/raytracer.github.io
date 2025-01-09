@@ -28,32 +28,71 @@
                 <li><a href="/blog">Blog</a></li>
             </ul>
         </nav>
-                        <h1 class="title">Building a Telegram bot for Todo management</h1>
+                        <h1 class="title">Building a Telegram bot for
+Todo management</h1>
                     </header>
 <main>
-<p>For the longest time I have looked for a solution to manage todos. I have tried out a lot of different solutions from services like <a href="https://todoist.com/">Todoist</a> and <a href="https://www.any.do/">Any.do</a> to low tech solutions like <a href="http://todotxt.org/">Todo.txt</a>. Nothing really stuck for a long time. I have a couple of requirements for a todo system:</p>
+<p>For the longest time I have looked for a solution to manage todos. I
+have tried out a lot of different solutions from services like <a
+href="https://todoist.com/">Todoist</a> and <a
+href="https://www.any.do/">Any.do</a> to low tech solutions like <a
+href="http://todotxt.org/">Todo.txt</a>. Nothing really stuck for a long
+time. I have a couple of requirements for a todo system:</p>
 <ul>
 <li>Multi Platform (at least on android, iOS and desktop/web)</li>
-<li>Intuitive UI (it must be easy and low friction to create a new todo)</li>
-<li>Some kind of automatic management/organization/scheduling of todos</li>
+<li>Intuitive UI (it must be easy and low friction to create a new
+todo)</li>
+<li>Some kind of automatic management/organization/scheduling of
+todos</li>
 </ul>
-<p>Thats basically it. I don’t really need tags or projects or file upload or anything like that. For a long time Any.do was the closest contender, but it always had some weird pricing with some kind of perpetual 50% discount going on (<em>but it will end next week! yeah this time for real!</em>). I also was not to fond of the web version the UI could have used a bit more love. On the other hand the Any.do moment feature and their new grocery list feature I quite liked. The Any.do moment basically helps you to periodically review todos and sort them into buckets (<strong>done</strong>, <strong>today</strong>, <strong>tomorrow</strong>, <strong>later</strong>).</p>
-<p>Since I was not really interested in purchasing the commercial version of Any.do (I was afraid I was not going to stick with it and wasting the yearly subscription) I went ahead and built my own minimal solution based on a telegram bot written in Java using this excellent <a href="https://github.com/pengrad/java-telegram-bot-api">library</a> by pengrad. It fulfills my most important criteria:</p>
+<p>Thats basically it. I don’t really need tags or projects or file
+upload or anything like that. For a long time Any.do was the closest
+contender, but it always had some weird pricing with some kind of
+perpetual 50% discount going on (<em>but it will end next week! yeah
+this time for real!</em>). I also was not to fond of the web version the
+UI could have used a bit more love. On the other hand the Any.do moment
+feature and their new grocery list feature I quite liked. The Any.do
+moment basically helps you to periodically review todos and sort them
+into buckets (<strong>done</strong>, <strong>today</strong>,
+<strong>tomorrow</strong>, <strong>later</strong>).</p>
+<p>Since I was not really interested in purchasing the commercial
+version of Any.do (I was afraid I was not going to stick with it and
+wasting the yearly subscription) I went ahead and built my own minimal
+solution based on a telegram bot written in Java using this excellent <a
+href="https://github.com/pengrad/java-telegram-bot-api">library</a> by
+pengrad. It fulfills my most important criteria:</p>
 <ul>
 <li>Telegram is cross platform</li>
-<li>It uses basic natural (german) language commands (e.g. “morgen”, “heute”, “nächste Woche”)</li>
-<li>If a task has no deadline yet it will be scheduled for the next day at 10am</li>
+<li>It uses basic natural (german) language commands (e.g. “morgen”,
+“heute”, “nächste Woche”)</li>
+<li>If a task has no deadline yet it will be scheduled for the next day
+at 10am</li>
 </ul>
-<p>I can describe my todo using natural language and keywords (german only). This is robust to a certain degree. I can leave out the time or date or only use a weekday. A task without any recognized keyword will receive a deadline for the next day at 10am. If the deadline of a task is met I get a reminder message from the bot and I can easily postpone it or mark it as done. It does not work that well for lists (like shopping lists), but it is great for one off tasks. So I only really miss the grocery shopping list from Any.do.</p>
+<p>I can describe my todo using natural language and keywords (german
+only). This is robust to a certain degree. I can leave out the time or
+date or only use a weekday. A task without any recognized keyword will
+receive a deadline for the next day at 10am. If the deadline of a task
+is met I get a reminder message from the bot and I can easily postpone
+it or mark it as done. It does not work that well for lists (like
+shopping lists), but it is great for one off tasks. So I only really
+miss the grocery shopping list from Any.do.</p>
 <figure>
-<img src="./2022-03-06_telegram_bot_for_todo_management.assets/telegram-bot.png" alt="A basic interaction with the bot (excuse the german buttons meaning done, tomorrow, later)" /><figcaption aria-hidden="true">A basic interaction with the bot (excuse the german buttons meaning <em>done</em>, <em>tomorrow</em>, <em>later</em>)</figcaption>
+<img
+src="./2022-03-06_telegram_bot_for_todo_management.assets/telegram-bot.png"
+alt="A basic interaction with the bot (excuse the german buttons meaning done, tomorrow, later)" />
+<figcaption aria-hidden="true">A basic interaction with the bot (excuse
+the german buttons meaning <em>done</em>, <em>tomorrow</em>,
+<em>later</em>)</figcaption>
 </figure>
-<p>You can find the bot <a href="https://t.me/todo_task_reminder_bot">here</a>. There is no guarantee that this bot will work forever. I included the source code in a gist:</p>
+<p>You can find the bot <a
+href="https://t.me/todo_task_reminder_bot">here</a>. There is no
+guarantee that this bot will work forever. I included the source code in
+a gist:</p>
 <script src="https://gist.github.com/raytracer/d334543fecc446232c8a45c1087a51b6.js"></script>
 </main>
 <footer>
     <section>
-        <a href="https://github.com/raytracer/website/edit/main/blog/2022-03-06_telegram_bot_for_todo_management.md">Edit on GitHub</a>
+        <a href="https://github.com/raytracer/website/edit/main/./blog/2022-03-06_telegram_bot_for_todo_management.md">Edit on GitHub</a>
     </section>
     <section>
         <a href="/impressum.html">Impressum und Datenschutz</a>
