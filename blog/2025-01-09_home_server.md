@@ -44,4 +44,4 @@ I will stick with fastmail for email. I have been using it for a couple of years
 
 ## Password Manager
 
-I will stick with bitwarden for my password manager. It would be an ideal candidate for self hosting. But I am not sure my home setup is reliable enough for this. Further I want to support the development of the client software (even if it is only a 10$/year).
+I will stick with bitwarden for my password manager. It would be an ideal candidate for self hosting. But I am not sure my home setup is reliable enough for this. Further I want to support the development of the client software (even if it is only 10$/year).
