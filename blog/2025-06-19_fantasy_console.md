@@ -23,9 +23,10 @@ itself these problems will go away (though I would be worried about the
 resulting cart size), but for now they remain.
 
 It also has no inbuilt tooling like a text editor, sprite editor or sound
-editor (though have third party carts for the latter). That means you can use
-your already existing favorite tooling, but it also means it is less
-integrated workflow than e.g. Pico8.
+editor (though there are third party carts for the
+[latter](https://wasm4.org/play/iwas)). That means you can use your already
+existing favorite tooling, but it also means it is less integrated workflow
+than e.g. Pico8.
 
 Being limited to 4 colors is also quite restrictive and makes the import of
 sprites a bit tedious (they are basically converted into byte arrays of the
@@ -38,9 +39,9 @@ limits of the WASM-4 color "space". But working around the memory problems and
 restriction (64kb) was a bit tedious and was costing motivation. I didn't
 really added any music, but that basic game play loop was close to finished.
 
-![The ship](./2025-06-19_fantasy_consoles/ship.png)
+![The ship](./2025-06-19_fantasy_consoles/ship.png){ width=300px }
 
-![Buildings](./2025-06-19_fantasy_consoles/building.png)
+![Buildings](./2025-06-19_fantasy_consoles/building.png){ width=300px }
 
 ## Generative AI
 
