@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Christoph Müller" />
+  <meta name="keywords" content="wasm4, pico8, picotron, game
+development, gen ai" />
+  <title>Fantasy Console Game Development</title>
+  <style>
+      figure{text-align: center;}
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="/mvp.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+    <header>
+        <nav>
+            <h3>raytracer.me</h3>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/blog">Blog</a></li>
+            </ul>
+        </nav>
+                        <h1 class="title">Fantasy Console Game
+Development</h1>
+                    </header>
+<main>
+<p>I have been working with so called fantasy consoles for about 4
+years. I have already written about my experience using wasm4 <a
+href="./2022-10-23_game_development_with_wasm4.html">here</a>. Fantasy
+console are basically programming/execution environments with a set of
+usually quite restrictive constraints (e.g. limited resolution, input
+methods, memory etc.). These really help with creativity and producing
+an actual result, instead of bike shedding and never actually producing
+anything.</p>
+<h2 id="wasm-4">WASM-4</h2>
+<p>My favorite platform up until last year was WASM-4. It allows you to
+use compiled languages (as long as they target wasm) and has even basic
+online multiplayer support. Unfortunately support for the Go version has
+been quite bad in recent releases. They have been relying on tinygo, but
+problems with memory management are still present. Maybe with upcoming
+wasm support from go itself these problems will go away (though I would
+be worried about the resulting cart size), but for now they remain.</p>
+<p>It also has no inbuilt tooling like a text editor, sprite editor or
+sound editor (though have third party carts for the latter). That means
+you can use your already existing favorite tooling, but it also means it
+is less integrated workflow than e.g. Pico8.</p>
+<p>Being limited to 4 colors is also quite restrictive and makes the
+import of sprites a bit tedious (they are basically converted into byte
+arrays of the host language). Since one color is used for transparency
+you are limited to 3 colors per sprite. That is just not enough for a
+lot of games.</p>
+<p>My last game for WASM-4 was an <a
+href="https://github.com/raytracer/wasm4-islands">Anno 1602 demake</a>
+which used pushed the limits of the WASM-4 color “space”. But working
+around the memory problems and restriction (64kb) was a bit tedious and
+was costing motivation. I didn’t really added any music, but that basic
+game play loop was close to finished.</p>
+<figure>
+<img src="./2025-06-19_fantasy_consoles/ship.png" alt="The ship" />
+<figcaption aria-hidden="true">The ship</figcaption>
+</figure>
+<figure>
+<img src="./2025-06-19_fantasy_consoles/building.png" alt="Buildings" />
+<figcaption aria-hidden="true">Buildings</figcaption>
+</figure>
+<h2 id="generative-ai">Generative AI</h2>
+<p>For this last game I was also using generative AI for the first time
+(on the topic of game development that is). On two fronts the use was
+quite successful.</p>
+<h3 id="sprite-creation">Sprite Creation</h3>
+<p>All sprites in the game are AI generated (with the exception of the
+resources in the header). They are generated with a <a
+href="https://civitai.com/models/195730/aziibpixelmix">SD 1.5 base model
+tuned for pixel art</a>. The result gets down sampled 8 times and color
+corrected via a <a
+href="https://github.com/mrreplicart/sd-webui-pixelart">web ui
+extension</a>. I used txt2img and img2img for most attempts. Most
+sprites needed about 50-100 generated images until I got something
+usable. The result was converted into a 4 color indexed png using my own
+little <a
+href="https://github.com/raytracer/closest-png-index">tool</a>. Finally
+I did some cleaning up in aseprite.</p>
+<h3 id="island-generation">Island Generation</h3>
+<p>I was looking for an algorithm to create islands and I used deepseek
+and chatgpt. Deepseek produced a nice looking well commented algorithm
+that ultimately did not really produce a useful output. Chatgpt (o1) on
+the other hand produced a great result even though the code itself did
+not look to appealing. I changed the result to use a memory conserving
+bitset. See the result in the linked repository. These are both one shot
+results so quite impressive I would say.</p>
+<h2 id="pico8-and-picotron">Pico8 and Picotron</h2>
+<p>The future of my endeavour in game development will probably take
+place in Pico8 and <a
+href="https://www.lexaloffle.com/picotron.php">Picotron</a>. While Pico8
+was a pioneer in the fantasy console world and has a great community,
+Picotron on the other hand is more of a workstation with some softened
+restraints to create bigger games with even better integrated
+tooling.</p>
+<p>I will stick with Go as my main programming language for bigger games
+(probably using ebitengine as my favorite engine).</p>
+<p>I may return to WASM-4 once they fixed their go implementation, but
+not for now.</p>
+</main>
+<footer>
+    <section>
+        <a href="https://github.com/raytracer/website/edit/main/./blog/2025-06-19_fantasy_console.md">Edit on GitHub</a>
+    </section>
+    <section>
+        <a href="/impressum.html">Impressum und Datenschutz</a>
+    </section>
+    <section>
+        Copyright © Christoph Müller 2015 - 2025.
+    </section>
+</footer>
+</body>
+</html>

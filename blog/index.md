@@ -1,6 +1,7 @@
 ---
 pagetitle: Blog Entries
 ---
+* **`2025-06-19`** [Fantasy Console Game Development](2025-06-19_fantasy_console.html)
 * **`2025-01-09`** [Setting up a Home Server](2025-01-09_home_server.html)
 * **`2024-02-24`** [Developing a basic 2d Isometric Game](2024-02-24_2d-isometric.html)
 * **`2023-12-16`** [A new file hosting solution](2023-12-16_file_sync.html)
