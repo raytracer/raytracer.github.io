@@ -25,7 +25,7 @@ resulting cart size), but for now they remain.
 It also has no inbuilt tooling like a text editor, sprite editor or sound
 editor (though there are third party carts for the
 [latter](https://wasm4.org/play/iwas)). That means you can use your already
-existing favorite tooling, but it also means it is less integrated workflow
+existing favorite tooling, but it also means it is a less integrated workflow
 than e.g. Pico8.
 
 Being limited to 4 colors is also quite restrictive and makes the import of
